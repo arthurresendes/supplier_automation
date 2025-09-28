@@ -1,5 +1,3 @@
 <?php
-echo "Oi";
-
-
+    echo "Oi";
 ?>
