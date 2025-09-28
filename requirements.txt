@@ -2,5 +2,4 @@ streamlit
 pandas
 selenium
 xlrd
-time
-io
+webdriver-manager
