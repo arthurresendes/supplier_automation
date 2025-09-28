@@ -312,15 +312,6 @@
                 return;
             }
             
-            // Validação do valor (deve ser numérico)
-            if (isNaN(val) || val <= 0) {
-                notification.textContent = 'Por favor, insira um valor numérico válido.';
-                notification.className = 'notification error';
-                notification.style.display = 'block';
-                ritmIdElement.style.display = 'none';
-                return;
-            }
-            
             // Gerar ID RITM aleatório
             const randomNumbers = Math.floor(1000 + Math.random() * 9000); 
             const ritmId = `RITM${randomNumbers}`;
@@ -333,12 +324,6 @@
             ritmIdElement.textContent = `ID gerado: ${ritmId}`;
             ritmIdElement.style.display = 'block';
             
-            // Limpar formulário após 5 segundos
-            setTimeout(() => {
-                document.getElementById('requestForm').reset();
-                notification.style.display = 'none';
-                ritmIdElement.style.display = 'none';
-            }, 5000);
         });
     </script>
 </body>

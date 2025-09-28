@@ -1,9 +1,61 @@
 import streamlit as st
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-#https://arthurresendes.github.io/supplier_automation/chamado.html
+import pandas as pd
+import time
 
-def stream():
+def pagina():
     st.title("Bem vindos ao Supplier Automation")
     st.subheader("Nele será possivel ver um exemplo de preenchimento de formulario pegando dados de uma planilha e pegando a requisição gerada direto para a sua planilha!!")
     upload = st.file_uploader("Escolha seu arquivo XLSX: ", type=['xlsx','xls'])
+    if upload is not None:
+        df = pd.read_excel(upload)
+        st.dataframe(df)
+        opcoes = df['Colaborador'].tolist()  
+        opcao_selecionada = st.selectbox("Selecione um colaborador: ", opcoes)
+        dados_selecionados = df[df['Colaborador'] == opcao_selecionada].iloc[0]
+        st.write(dados_selecionados['Colaborador'], dados_selecionados['Matricula'], dados_selecionados['Valor'])
+        
+        executar = st.button("Executar automação: ")
+        if executar:
+            driver = webdriver.Chrome()
+            driver.get("https://arthurresendes.github.io/supplier_automation/chamado.html")
+            nome_admin = driver.find_element(By.ID, "nomeAdmin")
+            nome_admin.send_keys(str(dados_selecionados['Admin']))  # ← Converter para string
+            
+            nome_col = driver.find_element(By.ID, "nomeCol")
+            nome_col.send_keys(str(dados_selecionados['Colaborador']))
+            
+            matricula = driver.find_element(By.ID, "ma")
+            matricula.send_keys(str(dados_selecionados['Matricula']))
+            
+            valor = driver.find_element(By.ID, "val")
+            valor.send_keys(str(dados_selecionados['Valor']))
+            
+            mensagem = driver.find_element(By.ID, "msg")
+            mensagem.send_keys(f"Abertura de chamado para colaborador {dados_selecionados['Colaborador']} no valor de {dados_selecionados['Valor']} com a matricula {dados_selecionados['Matricula']}")
+            
+            submeter = driver.find_element(By.ID, "sub")
+            submeter.click()
+            time.sleep(5)
+            
+            requisicao = driver.find_element(By.ID, "ritmId")
+            ritm = requisicao.text
+            
+            # Adicionar RITM ao DataFrame
+            if 'RITM' not in df.columns:
+                df['RITM'] = ''  # Criar coluna como string
+            else:
+                df['RITM'] = df['RITM'].astype(str)
+            
+            df.loc[df['Colaborador'] == opcao_selecionada, 'RITM'] = ritm
+            
+            # CORREÇÃO AQUI:
+            df.to_excel("planilha_atualizada.xlsx", index=False)  # Salvar arquivo
+            st.success(f"RITM {ritm} salvo na planilha")
+            st.dataframe(df)  # ← Mostrar o DataFrame atualizado em memória
+            
+            driver.close()
+
+if __name__ == "__main__":
+    pagina()
