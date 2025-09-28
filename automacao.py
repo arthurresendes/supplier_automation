@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import pandas as pd
 import time
+from io import BytesIO
 
 def pagina():
     st.title("Bem vindos ao Supplier Automation")
@@ -52,8 +53,18 @@ def pagina():
             
             # CORREÇÃO AQUI:
             df.to_excel("planilha_atualizada.xlsx", index=False)  # Salvar arquivo
+            output = BytesIO()
+            df.to_excel(output, index=False)
+            
             st.success(f"RITM {ritm} salvo na planilha")
-            st.dataframe(df)  # ← Mostrar o DataFrame atualizado em memória
+            st.dataframe(df)
+            
+            st.download_button(
+                label="📥 Baixar Planilha em XLSX",
+                data=output.getvalue(),
+                file_name="planilha_atualizada.xlsx",
+                mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            )
             
             driver.close()
 
