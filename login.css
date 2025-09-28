@@ -1,0 +1,19 @@
+body{
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 95vh; /* Garante que o contêiner ocupe toda a altura da tela */
+    width: 100%;
+}
+
+h2{
+    text-align: center;
+}
+
+form{
+    text-align: center;
+}
