@@ -10,14 +10,26 @@ def banco(dados_selecionados , ritm):
     conexao = sqlite3.connect("supplier.db")
     cursor = conexao.cursor()
     
-    cursor.execute("INSERT INTO USER(nome,admin,matricula,valor,RITM) VALUES (?,?)", (dados_selecionados['Colaborador'],dados_selecionados['Admin'],dados_selecionados['Matricula'],dados_selecionados['Valor'], ritm))
+    nome = str(dados_selecionados['Colaborador'])
+    admin = str(dados_selecionados['Admin'])
+    try:
+        matricula = str(int(float(dados_selecionados['Matricula'])))
+    except:
+        matricula = str(dados_selecionados['Matricula'])
+    
+    try:
+        valor = round(float(dados_selecionados['Valor']), 2)
+    except:
+        valor = 0.0
+    
+    cursor.execute("INSERT INTO USER(nome,admin,matricula,valor,RITM) VALUES (?,?,?,?,?)", (nome,admin,matricula,valor, ritm))
     
     conexao.commit()
     conexao.close()
 
-def pagina():
+def main():
     st.title("Bem vindos ao Supplier Automation")
-    st.write("Nele será possivel ver um exemplo de preenchimento de formulario pegando dados de uma planilha e pegando a requisição gerada direto para a sua planilha!!")
+    st.write("Nele será possivel ver um exemplo de preenchimento de formulario pegando dados de uma planilha, pegando a requisição gerada direto para uma nova planilha que será possivel baixar e tambem será salvo em um banco de dados interno!!")
     
     upload = st.file_uploader("Escolha seu arquivo XLSX: ", type=['xlsx','xls'])
     if upload is not None:
@@ -82,4 +94,4 @@ def pagina():
 
 
 if __name__ == "__main__":
-    pagina()
+    main()
