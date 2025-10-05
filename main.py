@@ -6,10 +6,16 @@ import time
 from io import BytesIO
 import sqlite3
 
-def pagina():
+def banco(dados_selecionados , ritm):
     conexao = sqlite3.connect("supplier.db")
     cursor = conexao.cursor()
     
+    cursor.execute("INSERT INTO USER(nome,admin,matricula,valor,RITM) VALUES (?,?)", (dados_selecionados['Colaborador'],dados_selecionados['Admin'],dados_selecionados['Matricula'],dados_selecionados['Valor'], ritm))
+    
+    conexao.commit()
+    conexao.close()
+
+def pagina():
     st.title("Bem vindos ao Supplier Automation")
     st.write("Nele será possivel ver um exemplo de preenchimento de formulario pegando dados de uma planilha e pegando a requisição gerada direto para a sua planilha!!")
     
@@ -48,7 +54,7 @@ def pagina():
             requisicao = driver.find_element(By.ID, "ritmId")
             ritm = requisicao.text
             
-            # Adicionar RITM ao DataFrame
+            
             if 'RITM' not in df.columns:
                 df['RITM'] = ''  # Criar coluna como string
             else:
@@ -70,11 +76,10 @@ def pagina():
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
             
-            cursor.execute("INSERT INTO USER(nome,RITM) VALUES (?,?)", (dados_selecionados['Colaborador'], ritm))
+            banco(dados_selecionados,ritm)
             
             driver.close()
-    conexao.commit()
-    conexao.close()
+
 
 if __name__ == "__main__":
     pagina()
