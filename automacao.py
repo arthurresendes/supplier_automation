@@ -4,8 +4,12 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 import time
 from io import BytesIO
+import sqlite3
 
 def pagina():
+    conexao = sqlite3.connect("supplier.db")
+    cursor = conexao.cursor()
+    
     st.title("Bem vindos ao Supplier Automation")
     st.write("Nele será possivel ver um exemplo de preenchimento de formulario pegando dados de uma planilha e pegando a requisição gerada direto para a sua planilha!!")
     
@@ -66,7 +70,11 @@ def pagina():
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
             
+            cursor.execute("INSERT INTO USER(nome,RITM) VALUES (?,?)", (dados_selecionados['Colaborador'], ritm))
+            
             driver.close()
+    conexao.commit()
+    conexao.close()
 
 if __name__ == "__main__":
     pagina()
