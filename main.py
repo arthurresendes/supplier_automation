@@ -22,7 +22,7 @@ def banco(dados_selecionados , ritm):
     except:
         valor = 0.0
     
-    cursor.execute("INSERT INTO USER(nome,admin,matricula,valor,RITM) VALUES (?,?,?,?,?)", (nome,admin,matricula,valor, ritm))
+    cursor.execute("INSERT INTO CHAMADO(nome,admin,matricula,valor,RITM) VALUES (?,?,?,?,?)", (nome,admin,matricula,valor, ritm))
     
     conexao.commit()
     conexao.close()
