@@ -1,4 +1,5 @@
 <?php
+# php -S localhost:PORTA -> Para acessar na web
 # Em produção / teste
 echo "Teste\n";
 $VAR = 2;
