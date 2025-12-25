@@ -24,6 +24,7 @@ O Supplier Automation é um sistema web para automação de processos envolvendo
   <img src="https://skillicons.dev/icons?i=vscode" alt="VSCode" height="48">
   <img src="https://skillicons.dev/icons?i=html" alt="HTML" height="48">
   <img src="https://skillicons.dev/icons?i=css" alt="CSS" height="48">
+  <img src="https://skillicons.dev/icons?i=js" alt="CSS" height="48">
 </p>
 
 ---
