@@ -99,4 +99,8 @@ A equipe recebe sugestões para novas funcionalidades, integrações ou melhoria
 ---
 
 **Equipe Supplier Automation**  
-[Seu contato ou LinkedIn]
+<p style="text-align: left;">
+  <a href="https://www.linkedin.com/in/arthur-resende-gomes-3312bb305" target="_blank" style="box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5); display: inline-block; margin: 10px; border-radius: 8px; overflow: hidden;">
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" height="48" width="48" alt="LinkedIn" style="border-radius: 8px; background: #fff; padding: 4px; box-shadow: 2px 2px 8px #000;" />
+  </a>
+</p>
