@@ -4,33 +4,13 @@ from selenium.webdriver.common.by import By
 import pandas as pd
 import time
 from io import BytesIO
-import sqlite3
+from banco import main_banco
 
-def banco(dados_selecionados , ritm):
-    conexao = sqlite3.connect("supplier.db")
-    cursor = conexao.cursor()
-    
-    nome = str(dados_selecionados['Colaborador'])
-    admin = str(dados_selecionados['Admin'])
-    try:
-        matricula = str(int(float(dados_selecionados['Matricula'])))
-    except:
-        matricula = str(dados_selecionados['Matricula'])
-    
-    try:
-        valor = round(float(dados_selecionados['Valor']), 2)
-    except:
-        valor = 0.0
-    
-    cursor.execute("INSERT INTO CHAMADO(nome,admin,matricula,valor,RITM) VALUES (?,?,?,?,?)", (nome,admin,matricula,valor, ritm))
-    
-    conexao.commit()
-    conexao.close()
-
-def main():
+def introducao():
     st.title("Bem vindos ao Supplier Automation")
     st.write("Nele será possivel ver um exemplo de preenchimento de formulario pegando dados de uma planilha, pegando a requisição gerada direto para uma nova planilha que será possivel baixar e tambem será salvo em um banco de dados interno!!")
-    
+
+def dados():
     upload = st.file_uploader("Escolha seu arquivo XLSX: ", type=['xlsx','xls'])
     if upload is not None:
         df = pd.read_excel(upload)
@@ -88,9 +68,13 @@ def main():
                 mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             )
             
-            banco(dados_selecionados,ritm)
+            main_banco(dados_selecionados,ritm)
             
             driver.close()
+
+def main():
+    introducao()
+    dados()
 
 
 if __name__ == "__main__":
