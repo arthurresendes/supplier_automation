@@ -40,13 +40,28 @@ const Planiha = () => {
                 <input type="submit" value="Validar" />
             </form>
             {erro && <p style={{ color: 'red', fontWeight: 'bold' }}>⚠️ {erro}</p>}
-            <ul>
-                {dadosJson && dadosJson.map((dad) => (
-                    <div>
-                        <li key={dad.Matricula}>{dad.Matricula} - {dad.Colaborador} - {dad.Valor} <button>Abrir chamado</button></li>
-                    </div>
-                ))}
-            </ul>
+            {dadosJson && (
+                <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
+                    <thead>
+                        <tr style={{ textAlign: 'left', backgroundColor: 'f2f2f2' }}>
+                            <th>Matricula</th>
+                            <th>Nome</th>
+                            <th>Valor</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {dadosJson.map((dad) => (
+                            <tr key={dad.Matricula} style={{ borderBottom: '1px solid #ddd' }}>
+                                <td>{dad.Matricula}</td>
+                                <td>{dad.Colaborador}</td>
+                                <td>{dad.Valor}</td>
+                                <td><button>Abrir chamado</button></td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            )}
         </div>
     )
 }
