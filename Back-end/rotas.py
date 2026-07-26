@@ -1,5 +1,12 @@
 from fastapi import APIRouter, status, File, HTTPException, UploadFile
+from fastapi.concurrency import run_in_threadpool
 import pandas as pd
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
+from Selenium import executar_selenium
+from schemas import Envio
+import time
 import io
 
 router = APIRouter(prefix='/api/v1')
@@ -34,3 +41,12 @@ async def conversao(file: UploadFile = File(...)):
             status_code=status.HTTP_422_UNPROCESSABLE_ENTITY, 
             detail=f'Erro ao processar o conteúdo do arquivo: {str(e)}'
         )
+
+@router.post("/open-desk", tags=["POST"], summary="Abrindo chamado", status_code=status.HTTP_201_CREATED)
+async def abertura_chamado(dados: Envio):
+    try:
+        ritm = await run_in_threadpool(executar_selenium,dados) # Executa uma function sincrona em um endpoint assincrono
+        return {"Success": True,"RITM": ritm,"Colaborador": dados.Colaborador, "Solicitante": dados.Admin}
+
+    except Exception as e:
+        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail=f"Erro ao abrir chamado: {str(e)}")
