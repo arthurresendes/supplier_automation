@@ -18,7 +18,7 @@ def executar_selenium(dados: Envio):
         driver.get("https://arthurresendes.github.io/supplier_automation/chamado.html")
 
         nome_admin = driver.find_element(By.ID, "nomeAdmin")
-        nome_admin.send_keys(dados.Admin)
+        nome_admin.send_keys(dados.Solicitante)
 
         nome_col = driver.find_element(By.ID, "nomeCol")
         nome_col.send_keys(dados.Colaborador)

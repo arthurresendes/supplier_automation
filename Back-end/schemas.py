@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 
 class Envio(BaseModel):
-    Admin: str
+    Solicitante: str
     Valor: float
     Colaborador: str
-    Matricula: str
+    Matricula: int
