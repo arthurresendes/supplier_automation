@@ -1,8 +1,8 @@
-fastapi
-uvicorn
-pydantic
-pandas
-selenium
-openpyxl
-python-multipart
-slowapi
+fastapi==0.136.3
+uvicorn==0.49.0
+pydantic==2.13.4
+pandas==3.0.3
+selenium==4.46.0
+openpyxl==3.1.5
+python-multipart==0.0.32
+slowapi==0.1.10
