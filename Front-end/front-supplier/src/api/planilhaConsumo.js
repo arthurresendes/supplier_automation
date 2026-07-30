@@ -6,6 +6,12 @@ export const planilhaConsumo = async (planilha) => {
     body: formData,
   });
 
+  if (res.status == 400) {
+    throw new Error(
+      "Verifique se a sua planilha tem os campos com esses nomes: Solicitante, Matricula, Valor, Colaborador",
+    );
+  }
+
   if (!res.ok) {
     throw new Error("Erro ao processar");
   }
