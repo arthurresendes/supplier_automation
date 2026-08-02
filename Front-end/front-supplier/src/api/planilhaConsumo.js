@@ -1,7 +1,9 @@
+const URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 export const planilhaConsumo = async (planilha) => {
   const formData = new FormData();
   formData.append("file", planilha);
-  const res = await fetch("http://localhost:8000/api/v1/transform-file", {
+  const res = await fetch(`${URL}/api/v1/transform-file`, {
     method: "POST",
     body: formData,
   });

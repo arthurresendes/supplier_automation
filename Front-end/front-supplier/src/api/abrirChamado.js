@@ -1,5 +1,7 @@
+const URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
+
 export const abrirChamado = async (dados) => {
-  const res = await fetch("http://localhost:8000/api/v1/open-desk", {
+  const res = await fetch(`${URL}/api/v1/open-desk`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
