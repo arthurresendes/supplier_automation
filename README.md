@@ -1,4 +1,4 @@
-# Supplier Automation
+# Supplier Automation -- Em manutenção
 
 Sistema web para automação de abertura de chamados de fornecedores a partir de planilhas, eliminando o preenchimento manual de formulários.
 
