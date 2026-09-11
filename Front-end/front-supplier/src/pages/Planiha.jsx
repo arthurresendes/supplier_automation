@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { planilhaConsumo } from '../api/planilhaConsumo'
 import { abrirChamado } from '../api/abrirChamado'
 import styles from './planilha.module.css'
+import Modal from '../hooks/Modal'
 
 const Planiha = () => {
     const [planilha, setPlanilha] = useState(null)
@@ -12,6 +13,7 @@ const Planiha = () => {
     const [ritm, setRitm] = useState('')
     const [colaborador, setColaborador] = useState('')
     const [solicitante, setSolicitante] = useState('')
+    const [open, setOpen] = useState(false)
 
     const lidarArquivo = (e) => {
         const arq = e.target.files[0]
@@ -58,6 +60,27 @@ const Planiha = () => {
 
     return (
         <div className={styles.container}>
+            <button onClick={() => setOpen(true)} className={styles.stepButton}>Passo a Passo</button>
+            <Modal isOpen={open} onClose={() => setOpen(false)}>
+                <h2>Como importar sua planilha</h2>
+                <p>Sua planilha deve ter os seguintes campos: </p>
+                <ul>
+                    <li>Solicitante</li>
+                    <li>Colaborador</li>
+                    <li>Matricula</li>
+                    <li>Valor</li>
+                    <li>Ritm</li>
+                </ul>
+                <p>Devem ser escritos exatamente assim no cabeçalho de sua planilha!</p>
+                <a
+                    href="/planilha_base.xlsx"
+                    download="planilha_base.xlsx"
+                    className={styles.downloadLink}
+                >
+                    Clique aqui para ver modelo básico
+                </a>
+            </Modal>
+
             <form action="" method="post" onSubmit={handleSubmit} className={styles.form}>
                 <label htmlFor="planilha" className={styles.fileLabel}>
                     Escolher arquivo
