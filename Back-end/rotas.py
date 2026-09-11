@@ -12,7 +12,7 @@ import io
 
 router = APIRouter(prefix='/api/v1')
 
-@router.get('/', tags=['GET'], summary='Rota base', status_code=status.HTTP_200_OK)
+@router.api_route("/", methods=["GET", "HEAD"], tags=["GET"], status_code=status.HTTP_200_OK, summary="Rota padrão")
 async def rota_base():
     return {'Message': 'Hello World'}
 
