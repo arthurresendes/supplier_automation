@@ -75,7 +75,7 @@ const Planiha = () => {
                     download="planilha_base.xlsx"
                     className={styles.downloadLink}
                 >
-                    Clique aqui para ver modelo básico
+                    Clique aqui para ver um modelo base
                 </a>
             </Modal>
 
