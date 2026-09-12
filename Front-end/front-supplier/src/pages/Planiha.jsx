@@ -62,14 +62,12 @@ const Planiha = () => {
         <div className={styles.container}>
             <button onClick={() => setOpen(true)} className={styles.stepButton}>Guia do Supplier Automation</button>
             <Modal isOpen={open} onClose={() => setOpen(false)}>
-                <h2>Como importar sua planilha</h2>
                 <p>Sua planilha deve ter os seguintes campos: </p>
                 <ul>
                     <li>Solicitante</li>
                     <li>Colaborador</li>
                     <li>Matricula</li>
                     <li>Valor</li>
-                    <li>Ritm</li>
                 </ul>
                 <p>Devem ser escritos exatamente assim no cabeçalho de sua planilha!</p>
                 <a
