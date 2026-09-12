@@ -14,11 +14,11 @@
 .container {
   max-width: 960px;
   margin: 48px auto;
-  padding: 36px;
+  padding: 40px;
   background-color: var(--bg-surface);
   border-radius: var(--radius-lg);
   border: 1px solid var(--border-color);
-  box-shadow: 0 20px 25px -5px rgba(15, 23, 42, 0.04), 0 8px 10px -6px rgba(15, 23, 42, 0.02);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 24px 48px -12px rgba(15, 23, 42, 0.1);
   font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   color: var(--text-main);
   -webkit-font-smoothing: antialiased;
@@ -33,12 +33,12 @@
   padding: 28px;
   border-radius: var(--radius-md);
   border: 1px dashed #cbd5e1;
-  transition: border-color 0.2s ease, background-color 0.2s ease;
+  transition: border-color 0.25s ease, background-color 0.25s ease;
 }
 
 .form:hover {
-  border-color: #94a3b8;
-  background-color: #f1f5f9;
+  border-color: var(--primary);
+  background-color: #f5f8ff;
 }
 
 .fileLabel {
@@ -59,8 +59,10 @@
 
 .fileLabel:hover {
   background-color: #f8fafc;
-  border-color: #cbd5e1;
+  border-color: var(--primary);
+  color: var(--primary);
   transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.06);
 }
 
 .fileInput {
@@ -89,17 +91,19 @@
   font-weight: 500;
   font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.15s ease;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .submitBtn:hover {
   background-color: #1e293b;
   transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(15, 23, 42, 0.18);
 }
 
 .submitBtn:active {
   transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .errorMsg {
@@ -144,7 +148,7 @@
   overflow: hidden;
   border-radius: var(--radius-md);
   border: 1px solid var(--border-color);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.03), 0 12px 24px -10px rgba(15, 23, 42, 0.06);
 }
 
 .table {
@@ -197,7 +201,8 @@
 
 .actionBtn:hover {
   background-color: var(--primary-hover);
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.28);
+  transform: translateY(-1px);
 }
 
 .actionBtnDisabled {
@@ -230,8 +235,10 @@
 
 .stepButton:hover {
   background-color: #f8fafc;
-  border-color: #cbd5e1;
+  border-color: var(--primary);
+  color: var(--primary);
   transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(15, 23, 42, 0.06);
 }
 
 .stepButton:active {
@@ -256,7 +263,7 @@
 
 .downloadLink:hover {
   background-color: var(--primary-hover);
-  box-shadow: 0 2px 4px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 6px 14px rgba(37, 99, 235, 0.3);
   transform: translateY(-1px);
 }
 
