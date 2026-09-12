@@ -60,7 +60,7 @@ const Planiha = () => {
 
     return (
         <div className={styles.container}>
-            <button onClick={() => setOpen(true)} className={styles.stepButton}>Passo a Passo</button>
+            <button onClick={() => setOpen(true)} className={styles.stepButton}>Guia do Supplier Automation</button>
             <Modal isOpen={open} onClose={() => setOpen(false)}>
                 <h2>Como importar sua planilha</h2>
                 <p>Sua planilha deve ter os seguintes campos: </p>
