@@ -113,33 +113,94 @@ A versão atual separou o projeto em **back-end** e **front-end** independentes,
 ```
 supplier_automation/
 ├── Back-end/
-│   ├── main.py            # Inicialização FastAPI, CORS, rate limit
-│   ├── rotas.py           # Endpoints: /transform-file e /open-desk
-│   ├── rpa_selenium.py    # Automação do formulário com Selenium
-│   ├── schemas.py         # Schema Pydantic para validação dos dados
-│   ├── limitador.py       # Configuração do rate limiter por IP
-│   ├── requirements.txt   # Dependências Python com versões fixas
-│   └── Dockerfile         # Container com Python + Chromium
+│   ├── main.py                # Inicialização FastAPI, CORS, rate limit
+│   ├── rotas.py               # Endpoints: /transform-file e /open-desk
+│   ├── rpa_selenium.py        # Automação do formulário com Selenium
+│   ├── schemas.py             # Schema Pydantic para validação dos dados
+│   ├── limitador.py           # Configuração do rate limiter por IP
+│   ├── requirements.txt       # Dependências Python com versões fixas
+│   └── Dockerfile             # Container com Python + Chromium
 │
 ├── Front-end/front-supplier/
+│   ├── public/
+│   │   ├── favicon.svg        # Ícone do site
+│   │   ├── icons.svg          # Ícones SVG customizados
+│   │   └── planilha_base.xlsx # Planilha modelo para download
+│   │
 │   ├── src/
 │   │   ├── api/
-│   │   │   ├── abrirChamado.js     # Chamada ao endpoint /open-desk
-│   │   │   └── planilhaConsumo.js  # Chamada ao endpoint /transform-file
+│   │   │   ├── abrirChamado.js      # Chamada ao endpoint /open-desk
+│   │   │   └── planilhaConsumo.js   # Chamada ao endpoint /transform-file
+│   │   │
+│   │   ├── assets/
+│   │   │   ├── hero.png        # Imagem hero da página
+│   │   │   ├── logo.png        # Logo do projeto
+│   │   │   ├── react.svg       # Ícone React
+│   │   │   └── vite.svg        # Ícone Vite
+│   │   │
+│   │   ├── hooks/
+│   │   │   ├── Modal.jsx       # Componente Modal reutilizável
+│   │   │   └── modal.module.css # Estilos do Modal (CSS Modules)
+│   │   │
 │   │   ├── pages/
-│   │   │   └── Planilha.jsx        # Página principal com tabela e ações
-│   │   └── App.jsx
-│   ├── package.json
-│   └── vite.config.js
+│   │   │   ├── Planiha.jsx          # Página principal com tabela e ações
+│   │   │   ├── planilha.module.css  # Estilos da página Planilha (CSS Modules)
+│   │   │   └── NotFound.jsx         # Página de erro 404
+│   │   │
+│   │   ├── App.jsx            # Componente raiz da aplicação
+│   │   ├── App.css            # Estilos globais
+│   │   ├── main.jsx           # Ponto de entrada da aplicação
+│   │   └── index.css          # CSS base do projeto
+│   │
+│   ├── .gitignore             # Arquivos ignorados pelo Git
+│   ├── .oxlintrc.json         # Configuração do Oxlint (linter)
+│   ├── index.html             # HTML principal
+│   ├── package.json           # Dependências Node.js
+│   ├── package-lock.json      # Lock file das dependências
+│   ├── vite.config.js         # Configuração do Vite
+│   ├── vercel.json            # Configuração de deploy no Vercel
+│   └── README.md              # Documentação do front-end (template Vite)
 │
-├── Versao_Antiga_Streamlit/
-│   ├── main.py            # App Streamlit original
-│   ├── banco.py           # Operações no SQLite
-│   └── criacao_banco.py   # Criação da tabela CHAMADO
+├── Versao_Antiga_Streamilt/
+│   ├── main.py                # App Streamlit original
+│   ├── banco.py               # Operações no SQLite
+│   ├── criacao_banco.py       # Criação da tabela CHAMADO
+│   └── supplier.db            # Banco de dados SQLite (histórico)
 │
-├── chamado.html           # Formulário alvo da automação
-└── planilha_base.xlsx     # Planilha modelo com os campos necessários
+├── .gitattributes             # Configuração de atributos Git
+├── .gitignore                 # Arquivos ignorados pelo Git
+├── LICENSE                    # Licença do projeto
+├── README.md                  # Documentação principal
+├── chamado.html               # Formulário alvo da automação (HTML puro)
+├── estiloChamado.css          # Estilos do formulário
+└── planilha_base.xlsx         # Planilha modelo na raiz (backup)
 ```
+
+### Explicação dos Diretórios Principais
+
+#### **Back-end/**
+Contém toda a lógica do servidor FastAPI em Python:
+- **main.py**: Configuração de CORS, rate limiting e inicialização do servidor
+- **rotas.py**: Definição dos endpoints da API (`/api/v1/transform-file` e `/api/v1/open-desk`)
+- **rpa_selenium.py**: Lógica de automação com Selenium (preenchimento de formulários)
+- **schemas.py**: Modelos de validação com Pydantic
+- **limitador.py**: Implementação do rate limiter (5 req/min por IP)
+- **Dockerfile**: Container Docker com Python + Chromium para rodar o Selenium
+
+#### **Front-end/front-supplier/**
+Aplicação React completa com Vite:
+- **src/api/**: Funções para comunicar com o back-end (fetch/axios)
+- **src/assets/**: Imagens, ícones e logos
+- **src/hooks/**: Componentes reutilizáveis (Modal, etc.)
+- **src/pages/**: Páginas da aplicação (Planilha, NotFound)
+- **public/**: Arquivos estáticos e planilha modelo para download
+- **Vite + CSS Modules**: Desenvolvimento rápido com build otimizado
+
+#### **Versao_Antiga_Streamilt/**
+Versão anterior (v1) do projeto com Streamlit — mantida para referência histórica:
+- **main.py**: Interface Streamlit original
+- **banco.py / criacao_banco.py**: Lógica de banco de dados SQLite
+- **supplier.db**: Histórico de chamados
 
 ---
 
